@@ -1,0 +1,8 @@
+-> Home --- Directs you to the home page ---> http://cl-iiith.vlabs.ac.in/index.html (hoome page URL)
+-> computational linguistics lab -----> same url as above
+-> Forming sentences -2 ----> same page
+-> url of this page(current expt page that needs to be re-created) -----> http://cl-iiith.vlabs.ac.in/exp2/index.html
+->6 clickables 
+->Experiment------------> 4th item-------> dropdown menu appears------> select language--------->
+.we should select the various words in proper order. They are in the form of buttons.
+.I think only this particular link requires a bit of extra js code. The rest of them are mostly html and css.
