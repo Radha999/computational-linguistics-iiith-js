@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Computational Linguistics lab </title>
+</head>
+<style>
+    div.a{
+        text-align: center;
+        font-family:Lucida Grande,Lucida Sans Unicode, Lucida Sans, Verdana,Arial,sans-serif;
+    }
+    div.heading{
+    color: #222222;
+    font-family: "proxima-nova-extra-condensed-1", "proxima-nova-extra-condensed-2", "Trebuchet MS","Lucida Grande", "Lucida Sans Unicode","Lucida Sans",Verdana, Arial,sans-serif;
+    font-size: 24px;
+    font-weight: 300;
+    margin-left: 40px;
+    padding: 5px 0 30px;
+}
+</style>
+<body>
+    <div class="heading">
+        Experiment
+    </div>
+     <div class="a">
+        <select name="language" id="language" onchange="report(this.value)">
+        <option>---Select language---</option>
+        <option>English</option>
+        <option>Hindi</option>
+    </select>
+    </div>
+        <br><br><br><br>
+        <div id="text" style="color:#0000AA;font-size:16px; text-align: center; font-weight: bold; font-family:Lucida Grande,Lucida Sans Unicode, Lucida Sans, Verdana,Arial,sans-serif; display:none">Form a  sentence (Declarative or Interrogative or any other type) from the given words</div><br>
+        <div id="m-text" style="color:#0000FF;font-size:14px;text-align: center; font-family:Lucida Grande,Lucida Sans Unicode, Lucida Sans, Verdana,Arial,sans-serif; display:none">(select the buttons in proper order) </div><br><br>
+     <script>
+         function report(a)
+         {
+            if(a==="---Select language---")
+            alert("Select language");
+            else if(a==="English" || a==="Hindi")
+            {
+                document.getElementById("text").style.display="block";
+                document.getElementById("m-text").style.display="block";
+            }
+         }
+     </script>
+      </body>
