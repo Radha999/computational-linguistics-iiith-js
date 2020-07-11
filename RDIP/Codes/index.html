@@ -16,8 +16,13 @@
     margin-left: 40px;
     padding: 5px 0 30px;
 }
+    div#mydiv{
+        text-align: center;
+        font-family:Lucida Grande,Lucida Sans Unicode, Lucida Sans, Verdana,Arial,sans-serif;
+    }
 </style>
 <body>
+   
     <div class="heading">
         Experiment
     </div>
@@ -31,16 +36,117 @@
         <br><br><br><br>
         <div id="text" style="color:#0000AA;font-size:16px; text-align: center; font-weight: bold; font-family:Lucida Grande,Lucida Sans Unicode, Lucida Sans, Verdana,Arial,sans-serif; display:none">Form a  sentence (Declarative or Interrogative or any other type) from the given words</div><br>
         <div id="m-text" style="color:#0000FF;font-size:14px;text-align: center; font-family:Lucida Grande,Lucida Sans Unicode, Lucida Sans, Verdana,Arial,sans-serif; display:none">(select the buttons in proper order) </div><br><br>
+        <div id="mydiv"> </div>
+        <script src="corpus.js"></script>
      <script>
+         
          function report(a)
          {
             if(a==="---Select language---")
             alert("Select language");
-            else if(a==="English" || a==="Hindi")
+            else if(a==="English")
             {
                 document.getElementById("text").style.display="block";
                 document.getElementById("m-text").style.display="block";
+                document.getElementById("mydiv").innerHTML = "";
+                random_selection_eng();
             }
+            else if(a==="Hindi")
+            {
+                document.getElementById("text").style.display="block";
+                document.getElementById("m-text").style.display="block";
+                document.getElementById("mydiv").innerHTML = "";
+                random_selection_hin();
+            }
+            
          }
+        function random_selection_eng()
+        {
+            var x = Math.floor(Math.random() * 10) + 1;
+            var eng = [];
+            if(x===1)
+                eng=e1.slice();
+            else if(x===2)
+                eng=e2.slice();
+            else if(x===3)
+                eng=e3.slice();
+            else if(x===4)
+                eng=e4.slice();
+            else if(x===5)
+                eng=e5.slice();
+            else if(x===6)
+                eng=e6.slice();
+            else if(x===7)
+                eng=e7.slice();
+            else if(x===8)
+                eng=e8.slice();
+            else if(x==9)
+                eng=e9.slice();
+            else if(x===10)
+                eng=e10.slice();
+            var l=eng.length;
+            var y=Math.floor(Math.random() * l);
+            var rs=eng[y];
+            var res = rs.split(" ");
+            res1=shuffle_array(res);
+            for(var i=0;i<res1.length;i++)
+            {
+                var btn = document.createElement("BUTTON");
+                btn.innerHTML = res1[i];
+                document.getElementById("mydiv").appendChild(btn);
+                document.getElementById("mydiv").innerHTML += '&nbsp&nbsp&nbsp&nbsp&nbsp';
+            }
+
+        }
+
+
+        function random_selection_hin()
+        {
+            var x = Math.floor(Math.random() * 7) + 1;
+            var hin = [];
+            if(x===1)
+                hin=h1.slice();
+            else if(x===2)
+                hin=h2.slice();
+            else if(x===3)
+                hin=h3.slice();
+            else if(x===4)
+                hin=h4.slice();
+            else if(x===5)
+                hin=h5.slice();
+            else if(x===6)
+                hin=h6.slice();
+            else if(x===7)
+                hin=h7.slice();
+            var l=hin.length;
+            var y=Math.floor(Math.random() * l);
+            var rs=hin[y];
+            var res = rs.split(" ");
+            res1=shuffle_array(res);
+            for(var i=0;i<res1.length;i++)
+            {
+                var btn = document.createElement("BUTTON");
+                btn.innerHTML = res1[i];
+                document.getElementById("mydiv").appendChild(btn);
+                document.getElementById("mydiv").innerHTML += '&nbsp&nbsp&nbsp&nbsp&nbsp';
+            }
+
+        }
+
+
+        function shuffle_array(str)
+        {
+            var j, x, i;
+            for (i = str.length - 1; i > 0; i--) 
+            {
+                j = Math.floor(Math.random() * (i + 1));
+                x = str[i];
+                str[i] = str[j];
+                str[j] = x;
+            }
+            return str;
+        }
+
+        
      </script>
       </body>
