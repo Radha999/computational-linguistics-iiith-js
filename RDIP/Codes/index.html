@@ -45,8 +45,9 @@
         <div id="mydiv1" style = "color:#444444; font: size 30px; text-align: center; font-weight: bold; font-family:Lucida Grande,Lucida Sans Unicode, Lucida Sans, Verdana,Arial,sans-serif"></div><br>
         <button id="reform-button" style="display: none; margin:auto">Re-form the sentence</button> <br>
         <button id="check_correctness" style="display: none; margin:auto">Check the correctness of the sentence</button><br>
-        <div id="correct" style="text-align:center;font-size:30px;color:#008000"></div>
-        <div id="wrong" style="text-align:center;font-size:30px;color:#FF0000"></div>
+        <div id="correct" style="text-align:center;font-size:30px;color:#008000"></div><br>
+        <div id="wrong" style="text-align:center;font-size:30px;color:#FF0000"></div><br>
+        <button id="get-cs" style="display: none; margin:auto">Get correct sentence</button><br>
        
         <script src="corpus.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -77,6 +78,7 @@
                     document.getElementById("correct").innerHTML = "";
                 if(document.getElementById("wrong"))
                     document.getElementById("wrong").innerHTML = "";
+                document.getElementById("get-cs").style.display="none";
                 sentence = [];
                 random_selection_eng();
             }
@@ -94,6 +96,7 @@
                     document.getElementById("correct").innerHTML = "";
                 if(document.getElementById("wrong"))
                     document.getElementById("wrong").innerHTML = "";
+                document.getElementById("get-cs").style.display="none";
                 sentence = [];
                 random_selection_hin();
             }
@@ -236,6 +239,7 @@
                     document.getElementById("correct").innerHTML = "";
                 if(document.getElementById("wrong"))
                     document.getElementById("wrong").innerHTML = "";
+                document.getElementById("get-cs").style.display="none";
                 sentence = [];
                 console.log(words);
                 var btn = [];
@@ -276,6 +280,7 @@
                 {
                     console.log("wrong");
                     document.getElementById("wrong").innerHTML = "Wrong answer!!!";
+                    document.getElementById("get-cs").style.display="block";
                 }
             }
         });
