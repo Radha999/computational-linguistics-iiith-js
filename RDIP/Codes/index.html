@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title> Computational Linguistics lab </title>
 </head>
 <style>
@@ -20,6 +21,9 @@
         text-align: center;
         font-family:Lucida Grande,Lucida Sans Unicode, Lucida Sans, Verdana,Arial,sans-serif;
     }
+    .btn{
+        margin : 10px;
+    }
 </style>
 <body>
    
@@ -36,9 +40,17 @@
         <br><br><br><br>
         <div id="text" style="color:#0000AA;font-size:16px; text-align: center; font-weight: bold; font-family:Lucida Grande,Lucida Sans Unicode, Lucida Sans, Verdana,Arial,sans-serif; display:none">Form a  sentence (Declarative or Interrogative or any other type) from the given words</div><br>
         <div id="m-text" style="color:#0000FF;font-size:14px;text-align: center; font-family:Lucida Grande,Lucida Sans Unicode, Lucida Sans, Verdana,Arial,sans-serif; display:none">(select the buttons in proper order) </div><br><br>
-        <div id="mydiv"> </div>
+        <div id="mydiv"> </div><br>
+        <div id = "text-f" style="color:#0000AA;font-size:16px; text-align: center; font-weight: bold; font-family:Lucida Grande,Lucida Sans Unicode, Lucida Sans, Verdana,Arial,sans-serif; display:none">Formed Sentence (after selecting words):</div><br>
+        <div id="mydiv1" style = "color:#444444; font: size 30px; text-align: center; font-weight: bold; font-family:Lucida Grande,Lucida Sans Unicode, Lucida Sans, Verdana,Arial,sans-serif"></div><br>
+    <button id="reform-button" style="display: none; margin:auto">Re-form the sentence</button> 
+       
         <script src="corpus.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
      <script>
+         var node = document.createElement("H1");
+         node.setAttribute("id","rem");
+         var space=" ";
          
          function report(a)
          {
@@ -46,16 +58,20 @@
             alert("Select language");
             else if(a==="English")
             {
+                document.getElementById("text-f").style.display="none";
                 document.getElementById("text").style.display="block";
                 document.getElementById("m-text").style.display="block";
                 document.getElementById("mydiv").innerHTML = "";
+                document.getElementById("mydiv1").innerHTML = "";
                 random_selection_eng();
             }
             else if(a==="Hindi")
             {
+                document.getElementById("text-f").style.display="none";
                 document.getElementById("text").style.display="block";
                 document.getElementById("m-text").style.display="block";
                 document.getElementById("mydiv").innerHTML = "";
+                document.getElementById("rem").innerHTML = "";
                 random_selection_hin();
             }
             
@@ -89,12 +105,14 @@
             var rs=eng[y];
             var res = rs.split(" ");
             res1=shuffle_array(res);
+            var btn=[];
             for(var i=0;i<res1.length;i++)
             {
-                var btn = document.createElement("BUTTON");
-                btn.innerHTML = res1[i];
-                document.getElementById("mydiv").appendChild(btn);
-                document.getElementById("mydiv").innerHTML += '&nbsp&nbsp&nbsp&nbsp&nbsp';
+                btn[i] = document.createElement("BUTTON");
+                btn[i].innerHTML = res1[i];
+                btn[i].setAttribute("id",i+1);
+                btn[i].setAttribute("class","btn");
+                document.getElementById("mydiv").appendChild(btn[i]);
             }
 
         }
@@ -127,12 +145,14 @@
             {
                 var btn = document.createElement("BUTTON");
                 btn.innerHTML = res1[i];
+                btn.setAttribute("id",i+1);
+                btn.setAttribute("class","btn");
                 document.getElementById("mydiv").appendChild(btn);
-                document.getElementById("mydiv").innerHTML += '&nbsp&nbsp&nbsp&nbsp&nbsp';
             }
 
         }
 
+        
 
         function shuffle_array(str)
         {
@@ -146,6 +166,24 @@
             }
             return str;
         }
+       
+        document.addEventListener('click', function(e){
+            var words=[]
+            if(Number(e.target.id))
+            {
+                document.getElementById("text-f").style.display="block";
+                document.getElementById("reform-button").style.display="block";
+                var p =  document.getElementById(e.target.id).innerHTML;
+                words.push(p);
+                document.getElementById(e.target.id).remove();
+                var textnode = document.createTextNode(p);
+                var spacenode = document.createTextNode(space);
+                node.appendChild(textnode);
+                node.appendChild(spacenode);
+                document.getElementById("mydiv1").appendChild(node);
+               // console.log(p);
+            }
+        });
 
         
      </script>
