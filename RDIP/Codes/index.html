@@ -43,7 +43,8 @@
         <div id="mydiv"> </div><br>
         <div id = "text-f" style="color:#0000AA;font-size:16px; text-align: center; font-weight: bold; font-family:Lucida Grande,Lucida Sans Unicode, Lucida Sans, Verdana,Arial,sans-serif; display:none">Formed Sentence (after selecting words):</div><br>
         <div id="mydiv1" style = "color:#444444; font: size 30px; text-align: center; font-weight: bold; font-family:Lucida Grande,Lucida Sans Unicode, Lucida Sans, Verdana,Arial,sans-serif"></div><br>
-    <button id="reform-button" style="display: none; margin:auto">Re-form the sentence</button> 
+        <button id="reform-button" style="display: none; margin:auto">Re-form the sentence</button> <br>
+        <button id="check_correctness" style="display: none; margin:auto">Check the correctness of the sentence</button> 
        
         <script src="corpus.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -52,6 +53,7 @@
          node.setAttribute("id","rem");
          var space=" ";
          var words;
+         var sen_len;
          
          function report(a)
          {
@@ -60,21 +62,27 @@
             else if(a==="English")
             {
                 document.getElementById("text-f").style.display="none";
+                document.getElementById("check_correctness").style.display="none";
+                document.getElementById("reform-button").style.display="none";
                 document.getElementById("text").style.display="block";
                 document.getElementById("m-text").style.display="block";
                 document.getElementById("mydiv").innerHTML = "";
                 if(document.getElementById("rem"))
                 document.getElementById("rem").innerHTML = "";
+                sentence = [];
                 random_selection_eng();
             }
             else if(a==="Hindi")
             {
                 document.getElementById("text-f").style.display="none";
+                document.getElementById("check_correctness").style.display="none";
+                document.getElementById("reform-button").style.display="none";
                 document.getElementById("text").style.display="block";
                 document.getElementById("m-text").style.display="block";
                 document.getElementById("mydiv").innerHTML = "";
                 if(document.getElementById("rem"))
                 document.getElementById("rem").innerHTML = "";
+                sentence = [];
                 random_selection_hin();
             }
             
@@ -108,6 +116,7 @@
             var rs=eng[y];
             var res = rs.split(" ");
             res1=shuffle_array(res);
+            sen_len=res1.length;
             words=res1;
             console.log(words);
             var btn=[];
@@ -146,6 +155,7 @@
             var rs=hin[y];
             var res = rs.split(" ");
             res1=shuffle_array(res);
+            sen_len=res1.length;
             words=res1;
             var btn=[]
             for(var i=0;i<res1.length;i++)
@@ -159,7 +169,7 @@
 
         }
 
-        
+        var sentence = [];
 
         function shuffle_array(str)
         {
@@ -180,12 +190,23 @@
                 document.getElementById("text-f").style.display="block";
                 document.getElementById("reform-button").style.display="block";
                 var p =  document.getElementById(e.target.id).innerHTML;
+                sentence.push(p);
+                console.log(sentence);
+                sen_len--;
+                console.log(sen_len);
                 document.getElementById(e.target.id).remove();
                 var textnode = document.createTextNode(p);
                 var spacenode = document.createTextNode(space);
                 node.appendChild(textnode);
                 node.appendChild(spacenode);
                 document.getElementById("mydiv1").appendChild(node);
+                if(sen_len===0)
+                {
+                    console.log(sentence);
+                    document.getElementById("check_correctness").style.display="block";
+                    var k = sentence.join(" ");
+                    console.log(k);
+                }
             }
         });
 
@@ -196,6 +217,8 @@
                 document.getElementById("rem").innerHTML = "";
                 document.getElementById("text-f").style.display="none";
                 document.getElementById("reform-button").style.display="none";
+                document.getElementById("check_correctness").style.display="none";
+                sentence = [];
                 console.log(words);
                 var btn = [];
                 for(var i=0;i<words.length;i++)
@@ -206,6 +229,7 @@
                     btn[i].setAttribute("class","btn");
                     document.getElementById("mydiv").appendChild(btn[i]);
                 }
+                sen_len = words.length;
             }
         });
 
