@@ -5,6 +5,10 @@
     <title> Computational Linguistics lab </title>
 </head>
 <style>
+    ::selection {
+        color : white;
+        background : #e75480 ;
+}
     div.a{
         text-align: center;
         font-family:Lucida Grande,Lucida Sans Unicode, Lucida Sans, Verdana,Arial,sans-serif;
@@ -298,7 +302,7 @@
         {
             if(g.target.id==="get-cs")
             {
-                if(document.getElementById("get-cs").innerHTML==="Get correct sentence")
+                if(document.getElementById("get-cs").innerHTML==="Get correct sentence" || document.getElementById("get-cs").innerHTML==="Get Answers" )
                 {
                     document.getElementById("cor").style.display="block";
                     document.getElementById("get-cs").innerHTML="Hide the correct sentence";
@@ -315,7 +319,7 @@
                 {
                     //console.log("reached");
                     document.getElementById("cor").innerHTML="";
-                    document.getElementById("get-cs").innerHTML = "Get correct sentence";
+                    document.getElementById("get-cs").innerHTML = "Get Answers";
 
                 }
             }
