@@ -48,6 +48,7 @@
         <div id="correct" style="text-align:center;font-size:30px;color:#008000"></div><br>
         <div id="wrong" style="text-align:center;font-size:30px;color:#FF0000"></div><br>
         <button id="get-cs" style="display: none; margin:auto">Get correct sentence</button><br>
+        <pre><div id="cor" style = "color:#444444; display:none; font: size 16px; text-align: center; font-family:Lucida Grande,Lucida Sans Unicode, Lucida Sans, Verdana,Arial,sans-serif;"></div></pre>
        
         <script src="corpus.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -79,6 +80,8 @@
                 if(document.getElementById("wrong"))
                     document.getElementById("wrong").innerHTML = "";
                 document.getElementById("get-cs").style.display="none";
+                document.getElementById("cor").style.display="none";
+                document.getElementById("get-cs").innerHTML = "Get correct sentence";
                 sentence = [];
                 random_selection_eng();
             }
@@ -97,6 +100,8 @@
                 if(document.getElementById("wrong"))
                     document.getElementById("wrong").innerHTML = "";
                 document.getElementById("get-cs").style.display="none";
+                document.getElementById("cor").style.display="none";
+                document.getElementById("get-cs").innerHTML = "Get correct sentence";
                 sentence = [];
                 random_selection_hin();
             }
@@ -134,7 +139,7 @@
             res1=shuffle_array(res);
             sen_len=res1.length;
             words=res1;
-            console.log(words);
+            //console.log(words);
             var btn=[];
             for(var i=0;i<res1.length;i++)
             {
@@ -208,9 +213,9 @@
                 document.getElementById("reform-button").style.display="block";
                 var p =  document.getElementById(e.target.id).innerHTML;
                 sentence.push(p);
-                console.log(sentence);
+                //console.log(sentence);
                 sen_len--;
-                console.log(sen_len);
+                //console.log(sen_len);
                 document.getElementById(e.target.id).remove();
                 var textnode = document.createTextNode(p);
                 var spacenode = document.createTextNode(space);
@@ -219,10 +224,10 @@
                 document.getElementById("mydiv1").appendChild(node);
                 if(sen_len===0)
                 {
-                    console.log(sentence);
+                    //console.log(sentence);
                     document.getElementById("check_correctness").style.display="block";
                     k = sentence.join(" ");
-                    console.log(k);
+                    //console.log(k);
                 }
             }
         });
@@ -235,13 +240,15 @@
                 document.getElementById("text-f").style.display="none";
                 document.getElementById("reform-button").style.display="none";
                 document.getElementById("check_correctness").style.display="none";
+                document.getElementById("cor").style.display="none";
+                document.getElementById("get-cs").innerHTML = "Get correct sentence";
                 if(document.getElementById("correct"))
                     document.getElementById("correct").innerHTML = "";
                 if(document.getElementById("wrong"))
                     document.getElementById("wrong").innerHTML = "";
                 document.getElementById("get-cs").style.display="none";
                 sentence = [];
-                console.log(words);
+                //console.log(words);
                 var btn = [];
                 for(var i=0;i<words.length;i++)
                 {
@@ -259,10 +266,11 @@
         document.addEventListener('click', function(r)
         {
             var flag=0;
-            console.log(k);
-            console.log(ar);
+            //console.log(k);
+            //console.log(ar);
             if(r.target.id==="check_correctness")
             {
+                document.getElementById("cor").innerHTML = "";
                 for(i=0;i<ar.length;i++)
                 {
                     if(ar[i]===k)
@@ -273,14 +281,42 @@
                 }
                 if(flag>0)
                 {
-                    console.log("correct");
+                    //console.log("correct");
                     document.getElementById("correct").innerHTML = "Right answer!!!";
                 }
                 else
                 {
-                    console.log("wrong");
+                    //console.log("wrong");
                     document.getElementById("wrong").innerHTML = "Wrong answer!!!";
                     document.getElementById("get-cs").style.display="block";
+                }
+            }
+        });
+
+
+        document.addEventListener('click', function(g)
+        {
+            if(g.target.id==="get-cs")
+            {
+                if(document.getElementById("get-cs").innerHTML==="Get correct sentence")
+                {
+                    document.getElementById("cor").style.display="block";
+                    document.getElementById("get-cs").innerHTML="Hide the correct sentence";
+                    for(i=0;i<ar.length;i++)
+                    {
+                        document.getElementById("cor").append(ar[i]);
+                        console.log(ar[i]);
+                        document.getElementById("cor").innerHTML += "\n";
+
+                    }
+
+                }
+                else if(document.getElementById("get-cs").innerHTML==="Hide the correct sentence")
+                {
+                    //console.log("reached");
+                    document.getElementById("cor").innerHTML="";
+                    document.getElementById("get-cs").innerHTML = "Get correct sentence";
+
                 }
             }
         });
