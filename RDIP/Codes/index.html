@@ -51,6 +51,7 @@
          var node = document.createElement("H1");
          node.setAttribute("id","rem");
          var space=" ";
+         var words;
          
          function report(a)
          {
@@ -62,7 +63,8 @@
                 document.getElementById("text").style.display="block";
                 document.getElementById("m-text").style.display="block";
                 document.getElementById("mydiv").innerHTML = "";
-                document.getElementById("mydiv1").innerHTML = "";
+                if(document.getElementById("rem"))
+                document.getElementById("rem").innerHTML = "";
                 random_selection_eng();
             }
             else if(a==="Hindi")
@@ -71,6 +73,7 @@
                 document.getElementById("text").style.display="block";
                 document.getElementById("m-text").style.display="block";
                 document.getElementById("mydiv").innerHTML = "";
+                if(document.getElementById("rem"))
                 document.getElementById("rem").innerHTML = "";
                 random_selection_hin();
             }
@@ -105,6 +108,8 @@
             var rs=eng[y];
             var res = rs.split(" ");
             res1=shuffle_array(res);
+            words=res1;
+            console.log(words);
             var btn=[];
             for(var i=0;i<res1.length;i++)
             {
@@ -141,6 +146,8 @@
             var rs=hin[y];
             var res = rs.split(" ");
             res1=shuffle_array(res);
+            words=res1;
+            var btn=[]
             for(var i=0;i<res1.length;i++)
             {
                 var btn = document.createElement("BUTTON");
@@ -168,20 +175,37 @@
         }
        
         document.addEventListener('click', function(e){
-            var words=[]
             if(Number(e.target.id))
             {
                 document.getElementById("text-f").style.display="block";
                 document.getElementById("reform-button").style.display="block";
                 var p =  document.getElementById(e.target.id).innerHTML;
-                words.push(p);
                 document.getElementById(e.target.id).remove();
                 var textnode = document.createTextNode(p);
                 var spacenode = document.createTextNode(space);
                 node.appendChild(textnode);
                 node.appendChild(spacenode);
                 document.getElementById("mydiv1").appendChild(node);
-               // console.log(p);
+            }
+        });
+
+        document.addEventListener('click', function(c){
+            if(c.target.id==="reform-button")
+            {
+                document.getElementById("mydiv").innerHTML = "";
+                document.getElementById("rem").innerHTML = "";
+                document.getElementById("text-f").style.display="none";
+                document.getElementById("reform-button").style.display="none";
+                console.log(words);
+                var btn = [];
+                for(var i=0;i<words.length;i++)
+                {
+                    btn[i] = document.createElement("BUTTON");
+                    btn[i].innerHTML = words[i];
+                    btn[i].setAttribute("id",i+1);
+                    btn[i].setAttribute("class","btn");
+                    document.getElementById("mydiv").appendChild(btn[i]);
+                }
             }
         });
 
