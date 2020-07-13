@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <meta charset="UTF-8">
     <title> Computational Linguistics lab </title>
 </head>
@@ -16,7 +17,7 @@
     div.heading{
     color: #222222;
     font-family: "proxima-nova-extra-condensed-1", "proxima-nova-extra-condensed-2", "Trebuchet MS","Lucida Grande", "Lucida Sans Unicode","Lucida Sans",Verdana, Arial,sans-serif;
-    font-size: 24px;
+    font-size: 30px;
     font-weight: 300;
     margin-left: 40px;
     padding: 5px 0 30px;
@@ -42,10 +43,10 @@
     </select>
     </div>
         <br><br><br><br>
-        <div id="text" style="color:#0000AA;font-size:16px; text-align: center; font-weight: bold; font-family:Lucida Grande,Lucida Sans Unicode, Lucida Sans, Verdana,Arial,sans-serif; display:none">Form a  sentence (Declarative or Interrogative or any other type) from the given words</div><br>
-        <div id="m-text" style="color:#0000FF;font-size:14px;text-align: center; font-family:Lucida Grande,Lucida Sans Unicode, Lucida Sans, Verdana,Arial,sans-serif; display:none">(select the buttons in proper order) </div><br><br>
+        <div id="text" style="color:#0000AA;font-size:18px; text-align: center; font-weight: bold; font-family:Lucida Grande,Lucida Sans Unicode, Lucida Sans, Verdana,Arial,sans-serif; display:none">Form a  sentence (Declarative or Interrogative or any other type) from the given words</div><br>
+        <div id="m-text" style="color:#0000FF;font-size:16px;text-align: center; font-family:Lucida Grande,Lucida Sans Unicode, Lucida Sans, Verdana,Arial,sans-serif; display:none"><i>(select the buttons in proper order)</i> </div><br><br>
         <div id="mydiv"> </div><br>
-        <div id = "text-f" style="color:#0000AA;font-size:16px; text-align: center; font-weight: bold; font-family:Lucida Grande,Lucida Sans Unicode, Lucida Sans, Verdana,Arial,sans-serif; display:none">Formed Sentence (after selecting words):</div><br>
+        <div id = "text-f" style="color:#0000AA;font-size:18px; text-align: center; font-family:Lucida Grande,Lucida Sans Unicode, Lucida Sans, Verdana,Arial,sans-serif; display:none"><strong>Formed Sentence</strong><i> (after selecting words): </i></div><br>
         <div id="mydiv1" style = "color:#444444; font: size 30px; text-align: center; font-weight: bold; font-family:Lucida Grande,Lucida Sans Unicode, Lucida Sans, Verdana,Arial,sans-serif"></div><br>
         <button id="reform-button" style="display: none; margin:auto">Re-form the sentence</button> <br>
         <button id="check_correctness" style="display: none; margin:auto">Check the correctness of the sentence</button><br>
@@ -57,7 +58,7 @@
         <script src="corpus.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
      <script>
-         var node = document.createElement("H1");
+         var node = document.createElement("H2");
          node.setAttribute("id","rem");
          var space=" ";
          var words;
