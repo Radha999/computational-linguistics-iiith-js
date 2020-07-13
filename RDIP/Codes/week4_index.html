@@ -22,6 +22,12 @@
     margin-left: 40px;
     padding: 5px 0 30px;
 }
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  margin-left:auto; 
+  margin-right:auto;
+}
 </style>
 
 <body>
@@ -29,11 +35,50 @@
     <div class="heading">
         Experiment
     </div>
-     <div class="a">
+     <div class="a"><br><br>
         <select name="para" id="corpus" onchange="report(this.value)">
         <option>---Select a corpus---</option>
         <option>Corpus 1</option>
         <option>Corpus 2</option>
         <option>Corpus 3</option>
     </select>
-    </div>
+    </div><br><br>
+    <div id = "paragraph" style = "color:#444444; font: size 16px; text-align: center; font-family:Lucida Grande,Lucida Sans Unicode, Lucida Sans, Verdana,Arial,sans-serif;"></div><br><br>
+    <div id = "msg" style = "color:#444444; display:none; font: size 16px; text-align: center; font-family:Lucida Grande,Lucida Sans Unicode, Lucida Sans, Verdana,Arial,sans-serif;">Enter the number of tokens and types for the above corpus:</div><br>
+    <div id = "table" style="display:none"><table cellspacing="-2" cellpadding="6" tableborder ="0" style="text-align:center;">
+        <tbody><tr><td>#tokens:</td><td id="ans1_cont">
+        <input type="text" id="ans1" name="tokens" size="4"></td></tr><tr><td>#types:</td><td id="ans2_cont"> <input type="text" name="types" id="ans2" size="4"></td></tr></tbody></table></div>
+
+    <script src="corpus1.js"></script>
+    <script>
+   
+    function report(a)
+    {
+       if(a==="---Select a corpus---")
+            alert("Select a corpus");
+       else if(a==="Corpus 1")
+        {
+            document.getElementById("paragraph").innerHTML="";
+            document.getElementById("paragraph").append(c1);
+            document.getElementById("msg").style.display="block";
+            document.getElementById("table").style.display="block";
+        }
+        else if(a==="Corpus 2")
+        {
+            document.getElementById("paragraph").innerHTML="";
+            document.getElementById("paragraph").append(c2);
+            document.getElementById("msg").style.display="block";
+            document.getElementById("table").style.display="block";
+        }
+        else if(a==="Corpus 3")
+        {
+            document.getElementById("paragraph").innerHTML="";
+            document.getElementById("paragraph").append(c3);
+            document.getElementById("msg").style.display="block";
+            document.getElementById("table").style.display="block";
+        }
+    }
+</script>
+    
+    </body>
+    </html>
