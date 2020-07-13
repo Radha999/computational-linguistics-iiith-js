@@ -1,0 +1,10 @@
+In this experiment we need to create a small table as a part of UI.
+The table consists of 2 rows and 2 columns.
+We need to enter number of tokens and types in these.
+Number of tokens is the total number of words in the given corpus.
+Types is the number of unique words.
+In this experiment we have 3 corpuses. We need to select one from the drop-down menu.
+Then that particular corpus appears on the screen.
+From that particular corpus we need to know the number of tokens and types.
+#new-types : Words having the same root are considered to be asingle word. So it wouldn't be a new type despite being a new word
+For doing this we need to use a snowball stemmer. We should install it.
