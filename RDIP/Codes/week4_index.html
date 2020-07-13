@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title> Computational Linguistics lab </title>
+</head>
+<style>
+    ::selection {
+        color : white;
+        background : #e75480 ;
+}
+    div.a{
+        text-align: center;
+        font-family:Lucida Grande,Lucida Sans Unicode, Lucida Sans, Verdana,Arial,sans-serif;
+    }
+    div.heading{
+    color: #222222;
+    font-family: "proxima-nova-extra-condensed-1", "proxima-nova-extra-condensed-2", "Trebuchet MS","Lucida Grande", "Lucida Sans Unicode","Lucida Sans",Verdana, Arial,sans-serif;
+    font-size: 30px;
+    font-weight: 300;
+    margin-left: 40px;
+    padding: 5px 0 30px;
+}
+</style>
+
+<body>
+   
+    <div class="heading">
+        Experiment
+    </div>
+     <div class="a">
+        <select name="para" id="corpus" onchange="report(this.value)">
+        <option>---Select a corpus---</option>
+        <option>Corpus 1</option>
+        <option>Corpus 2</option>
+        <option>Corpus 3</option>
+    </select>
+    </div>
