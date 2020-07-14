@@ -47,10 +47,13 @@ table, th, td {
     <div id = "msg" style = "color:#444444; display:none; font: size 16px; text-align: center; font-family:Lucida Grande,Lucida Sans Unicode, Lucida Sans, Verdana,Arial,sans-serif;">Enter the number of tokens and types for the above corpus:</div><br>
     <div id = "table" style="display:none"><table cellspacing="-2" cellpadding="6" tableborder ="0" style="text-align:center;">
         <tbody><tr><td>#tokens:</td><td id="ans1_cont">
-        <input type="text" id="ans1" name="tokens" size="4"></td></tr><tr><td>#types:</td><td id="ans2_cont"> <input type="text" name="types" id="ans2" size="4"></td></tr></tbody></table></div>
+        <input type="text" id="ans1" name="tokens" size="4"></td></tr><tr><td>#types:</td><td id="ans2_cont"> <input type="text" name="types" id="ans2" size="4"></td></tr></tbody></table></div><br>
+        <button id="subm" style="display: none; margin:auto">Submit</button><br>
 
     <script src="corpus1.js"></script>
     <script>
+        var tok=0;
+        var ty=0;
    
     function report(a)
     {
@@ -62,6 +65,13 @@ table, th, td {
             document.getElementById("paragraph").append(c1);
             document.getElementById("msg").style.display="block";
             document.getElementById("table").style.display="block";
+            document.getElementById("subm").style.display="block";
+            document.getElementById("ans1").value = "";
+            document.getElementById("ans2").value = "";
+            document.getElementById("ans1").style.backgroundColor="white";
+            document.getElementById("ans2").style.backgroundColor="white";
+            tok=tokens(c1);
+            ty=types(c1);
         }
         else if(a==="Corpus 2")
         {
@@ -69,6 +79,13 @@ table, th, td {
             document.getElementById("paragraph").append(c2);
             document.getElementById("msg").style.display="block";
             document.getElementById("table").style.display="block";
+            document.getElementById("subm").style.display="block";
+            document.getElementById("ans1").value = "";
+            document.getElementById("ans2").value = "";
+            document.getElementById("ans1").style.backgroundColor="white";
+            document.getElementById("ans2").style.backgroundColor="white";
+             tok=tokens(c2);
+             ty=types(c2);
         }
         else if(a==="Corpus 3")
         {
@@ -76,8 +93,79 @@ table, th, td {
             document.getElementById("paragraph").append(c3);
             document.getElementById("msg").style.display="block";
             document.getElementById("table").style.display="block";
+            document.getElementById("subm").style.display="block";
+            document.getElementById("ans1").value = "";
+            document.getElementById("ans2").value = ""; 
+            document.getElementById("ans1").style.backgroundColor="white";
+            document.getElementById("ans2").style.backgroundColor="white";
+            tok=tokens(c3);
+            ty=types(c3);
         }
     }
+
+    function tokens(ar)
+    {
+        var ar1=[];
+        ar1=ar.split(" ");
+        console.log(ar1);
+        var token=ar1.length;
+        console.log(token);
+        return token;
+    }
+
+    function types(ar)
+    {
+        var ar1;
+        ar1 = ar.toLowerCase();
+        ar1 = ar1.replace(/[.,\/\'?#!$%\^&\*;:{}=\-_`~()]/g,"").replace(/\s{2,}/g," ");
+        console.log(ar1);
+        ar1=ar1.split(" ");
+        console.log(ar1);
+        var uniqueItems = Array.from(new Set(ar1));
+        console.log(uniqueItems);
+        var type=uniqueItems.length;
+        console.log(type);
+        return type;
+    }
+
+    document.addEventListener('click', function(c){
+        console.log("Clicked");
+            if(c.target.id==="subm")
+            {
+                console.log("Reached");
+                console.log(document.getElementById("ans1").value);
+                console.log(tok);
+                var a = document.getElementById("ans1").value;
+                var b = document.getElementById("ans2").value
+                if(document.getElementById("ans1").value == tok)
+                {
+                    document.getElementById("ans1").value = "";   
+                    document.getElementById("ans1").style.backgroundColor="green";
+                    document.getElementById("ans1").value = tok;  
+                    console.log("Reached1");
+                }
+                else
+                {
+                    document.getElementById("ans1").value = ""; 
+                    document.getElementById("ans1").style.backgroundColor="red";
+                    document.getElementById("ans1").value = a;
+                }
+            
+                if(document.getElementById("ans2").value == ty)
+                {
+                    document.getElementById("ans2").value = ""; 
+                    document.getElementById("ans2").style.backgroundColor="green";
+                    document.getElementById("ans2").value = ty;
+                }
+                else
+                {
+                    document.getElementById("ans2").value = ""; 
+                    document.getElementById("ans2").style.backgroundColor="red";
+                    document.getElementById("ans2").value = b;
+                }
+            }
+        });
+    
 </script>
     
     </body>
