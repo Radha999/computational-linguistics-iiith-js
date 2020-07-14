@@ -49,6 +49,14 @@ table, th, td {
         <tbody><tr><td>#tokens:</td><td id="ans1_cont">
         <input type="text" id="ans1" name="tokens" size="4"></td></tr><tr><td>#types:</td><td id="ans2_cont"> <input type="text" name="types" id="ans2" size="4"></td></tr></tbody></table></div><br>
         <button id="subm" style="display: none; margin:auto">Submit</button><br>
+        <div id="c-ans" style="text-align:center;font-size:20px;color:#008000"></div>
+        <div id="w-ans" style="text-align:center;font-size:20px;color:#FF0000"></div><br>
+        <button id="cont" style="display: none; margin:auto">Continue</button><br>
+        <div id="msg1" style = "color:#444444; display:none; font: size 16px; text-align: center; font-family:Lucida Grande,Lucida Sans Unicode, Lucida Sans, Verdana,Arial,sans-serif;">Now, consider all the tokens with the same 'root' word to be of the same type. Recalculate the number of types.</div><br>
+        <div id="msg2" style = "color:#444444; display:none; font: size 16px; text-align: center; font-family:Lucida Grande,Lucida Sans Unicode, Lucida Sans, Verdana,Arial,sans-serif;">#new types</div>
+        <input type="text" id="tb1" style="display:none; margin:auto"><br><br>
+        <button id="subm1" style="display: none; margin:auto">Submit</button><br>
+
 
     <script src="corpus1.js"></script>
     <script>
@@ -70,6 +78,14 @@ table, th, td {
             document.getElementById("ans2").value = "";
             document.getElementById("ans1").style.backgroundColor="white";
             document.getElementById("ans2").style.backgroundColor="white";
+            document.getElementById("c-ans").innerHTML = "";
+            document.getElementById("w-ans").innerHTML = "";
+            document.getElementById("cont").style.display="none";
+            document.getElementById("msg1").style.display="none";
+            document.getElementById("msg2").style.display="none";
+            document.getElementById("tb1").style.display="none";
+            document.getElementById("subm1").style.display="none";
+            
             tok=tokens(c1);
             ty=types(c1);
         }
@@ -84,6 +100,14 @@ table, th, td {
             document.getElementById("ans2").value = "";
             document.getElementById("ans1").style.backgroundColor="white";
             document.getElementById("ans2").style.backgroundColor="white";
+            document.getElementById("c-ans").innerHTML = "";
+            document.getElementById("w-ans").innerHTML = "";
+            document.getElementById("cont").style.display="none";
+            document.getElementById("msg1").style.display="none";
+            document.getElementById("msg2").style.display="none";
+            document.getElementById("tb1").style.display="none";
+            document.getElementById("subm1").style.display="none";
+            
              tok=tokens(c2);
              ty=types(c2);
         }
@@ -98,6 +122,14 @@ table, th, td {
             document.getElementById("ans2").value = ""; 
             document.getElementById("ans1").style.backgroundColor="white";
             document.getElementById("ans2").style.backgroundColor="white";
+            document.getElementById("c-ans").innerHTML = "";
+            document.getElementById("w-ans").innerHTML = "";
+            document.getElementById("cont").style.display="none";
+            document.getElementById("msg1").style.display="none";
+            document.getElementById("msg2").style.display="none";
+            document.getElementById("tb1").style.display="none";
+            document.getElementById("subm1").style.display="none";
+            
             tok=tokens(c3);
             ty=types(c3);
         }
@@ -136,12 +168,14 @@ table, th, td {
                 console.log(document.getElementById("ans1").value);
                 console.log(tok);
                 var a = document.getElementById("ans1").value;
-                var b = document.getElementById("ans2").value
+                var b = document.getElementById("ans2").value;
+                var i=0;
                 if(document.getElementById("ans1").value == tok)
                 {
                     document.getElementById("ans1").value = "";   
                     document.getElementById("ans1").style.backgroundColor="green";
-                    document.getElementById("ans1").value = tok;  
+                    document.getElementById("ans1").value = tok;
+                    i++;
                     console.log("Reached1");
                 }
                 else
@@ -156,6 +190,7 @@ table, th, td {
                     document.getElementById("ans2").value = ""; 
                     document.getElementById("ans2").style.backgroundColor="green";
                     document.getElementById("ans2").value = ty;
+                    i++;
                 }
                 else
                 {
@@ -163,6 +198,37 @@ table, th, td {
                     document.getElementById("ans2").style.backgroundColor="red";
                     document.getElementById("ans2").value = b;
                 }
+                console.log(i);
+                if(i == 2)
+                {
+                    document.getElementById("c-ans").innerHTML = "";
+                    document.getElementById("w-ans").innerHTML = "";
+                    document.getElementById("c-ans").innerHTML = "Right answer";
+                    document.getElementById("cont").style.display="block";
+                }
+                else
+                {
+                    document.getElementById("c-ans").innerHTML = "";
+                    document.getElementById("w-ans").innerHTML = "";
+                    document.getElementById("w-ans").innerHTML = "Wrong answer";
+                }
+                
+            }
+        });
+
+
+        document.addEventListener('click', function(n){
+            if(n.target.id==="cont")
+            {
+                document.getElementById("c-ans").innerHTML = "";
+                document.getElementById("w-ans").innerHTML = "";
+                document.getElementById("cont").style.display="none";
+                document.getElementById("subm").style.display="none";
+                document.getElementById("msg1").style.display="block";
+                document.getElementById("msg2").style.display="block";
+                document.getElementById("tb1").style.display="block";
+                document.getElementById("subm1").style.display="block";
+            
             }
         });
     
