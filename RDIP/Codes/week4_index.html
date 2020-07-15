@@ -63,6 +63,7 @@ table, th, td {
     <script>
         var tok=0;
         var ty=0;
+        var ui;
         var testStemmer = new Snowball("english");
         testStemmer.setCurrent("abbreviation");
         testStemmer.stem();
@@ -159,7 +160,8 @@ table, th, td {
         ar1=ar1.split(" ");
         console.log(ar1);
         var uniqueItems = Array.from(new Set(ar1));
-        console.log(uniqueItems);
+        ui=uniqueItems;
+        console.log(ui);
         var type=uniqueItems.length;
         console.log(type);
         return type;
@@ -234,6 +236,27 @@ table, th, td {
                 document.getElementById("tb1").style.display="block";
                 document.getElementById("subm1").style.display="block";
             
+            }
+        });
+
+
+        document.addEventListener('click', function(s){
+            if(s.target.id==="subm1")
+            {
+                var res = [];
+                for(var i=0;i<ui.length;i++)
+                {
+                    var testStemmer = new Snowball("english");
+                    testStemmer.setCurrent(ui[i]);
+                    testStemmer.stem();
+                    res.push(testStemmer.getCurrent());
+                }
+                
+                    var fr = Array.from(new Set(res));
+                    console.log(fr);
+                    var fc = fr.length;
+                    //console.log(fc);
+                
             }
         });
     
