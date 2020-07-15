@@ -54,8 +54,10 @@ table, th, td {
         <button id="cont" style="display: none; margin:auto">Continue</button><br>
         <div id="msg1" style = "color:#444444; display:none; font: size 16px; text-align: center; font-family:Lucida Grande,Lucida Sans Unicode, Lucida Sans, Verdana,Arial,sans-serif;">Now, consider all the tokens with the same 'root' word to be of the same type. Recalculate the number of types.</div><br>
         <div id="msg2" style = "color:#444444; display:none; font: size 16px; text-align: center; font-family:Lucida Grande,Lucida Sans Unicode, Lucida Sans, Verdana,Arial,sans-serif;">#new types</div>
-        <input type="text" id="tb1" style="display:none; margin:auto"><br><br>
+        <input type="text" id="tb1" style="display:none; text-align: center; margin:auto"><br><br>
         <button id="subm1" style="display: none; margin:auto">Submit</button><br>
+        <div id="c-ans1" style="text-align:center;font-size:20px;color:#008000"></div>
+        <div id="w-ans1" style="text-align:center;font-size:20px;color:#FF0000"></div>
 
 
     <script src="corpus1.js"></script>
@@ -93,6 +95,8 @@ table, th, td {
             document.getElementById("subm1").style.display="none";
             document.getElementById("tb1").value = ""; 
             document.getElementById("tb1").style.backgroundColor="white";
+            document.getElementById("c-ans1").innerHTML = "";
+            document.getElementById("w-ans1").innerHTML = "";
             
             tok=tokens(c1);
             ty=types(c1);
@@ -117,6 +121,8 @@ table, th, td {
             document.getElementById("subm1").style.display="none";
             document.getElementById("tb1").value = ""; 
             document.getElementById("tb1").style.backgroundColor="white";
+            document.getElementById("c-ans1").innerHTML = "";
+            document.getElementById("w-ans1").innerHTML = "";
             
              tok=tokens(c2);
              ty=types(c2);
@@ -141,6 +147,8 @@ table, th, td {
             document.getElementById("subm1").style.display="none";
             document.getElementById("tb1").value = ""; 
             document.getElementById("tb1").style.backgroundColor="white";
+            document.getElementById("c-ans1").innerHTML = "";
+            document.getElementById("w-ans1").innerHTML = "";
             
             tok=tokens(c3);
             ty=types(c3);
@@ -268,13 +276,19 @@ table, th, td {
                     {
                         document.getElementById("tb1").value = ""; 
                         document.getElementById("tb1").style.backgroundColor="green";
-                        document.getElementById("tb1").value = a; 
+                        document.getElementById("tb1").value = a;
+                        document.getElementById("c-ans1").innerHTML = "";
+                        document.getElementById("w-ans1").innerHTML = "";
+                        document.getElementById("c-ans1").innerHTML = "Right answer";
                     }
                     else
                     {
                         document.getElementById("tb1").value = ""; 
                         document.getElementById("tb1").style.backgroundColor="red";
-                        document.getElementById("tb1").value = a; 
+                        document.getElementById("tb1").value = a;
+                        document.getElementById("c-ans1").innerHTML = "";
+                        document.getElementById("w-ans1").innerHTML = "";
+                        document.getElementById("w-ans1").innerHTML = "Wrong answer";
                     }
                 
             }
