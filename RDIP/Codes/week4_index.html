@@ -91,6 +91,8 @@ table, th, td {
             document.getElementById("msg2").style.display="none";
             document.getElementById("tb1").style.display="none";
             document.getElementById("subm1").style.display="none";
+            document.getElementById("tb1").value = ""; 
+            document.getElementById("tb1").style.backgroundColor="white";
             
             tok=tokens(c1);
             ty=types(c1);
@@ -113,6 +115,8 @@ table, th, td {
             document.getElementById("msg2").style.display="none";
             document.getElementById("tb1").style.display="none";
             document.getElementById("subm1").style.display="none";
+            document.getElementById("tb1").value = ""; 
+            document.getElementById("tb1").style.backgroundColor="white";
             
              tok=tokens(c2);
              ty=types(c2);
@@ -135,6 +139,8 @@ table, th, td {
             document.getElementById("msg2").style.display="none";
             document.getElementById("tb1").style.display="none";
             document.getElementById("subm1").style.display="none";
+            document.getElementById("tb1").value = ""; 
+            document.getElementById("tb1").style.backgroundColor="white";
             
             tok=tokens(c3);
             ty=types(c3);
@@ -255,7 +261,21 @@ table, th, td {
                     var fr = Array.from(new Set(res));
                     console.log(fr);
                     var fc = fr.length;
-                    //console.log(fc);
+                    console.log(fc);
+                    var a = document.getElementById("tb1").value;
+                    console.log(a);
+                    if(document.getElementById("tb1").value == fc)
+                    {
+                        document.getElementById("tb1").value = ""; 
+                        document.getElementById("tb1").style.backgroundColor="green";
+                        document.getElementById("tb1").value = a; 
+                    }
+                    else
+                    {
+                        document.getElementById("tb1").value = ""; 
+                        document.getElementById("tb1").style.backgroundColor="red";
+                        document.getElementById("tb1").value = a; 
+                    }
                 
             }
         });
