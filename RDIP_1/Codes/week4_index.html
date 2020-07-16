@@ -66,10 +66,10 @@ table, th, td {
         var tok=0;
         var ty=0;
         var ui;
-        var testStemmer = new Snowball("english");
-        testStemmer.setCurrent("abbreviation");
-        testStemmer.stem();
-        console.log(testStemmer.getCurrent());
+       // var testStemmer = new Snowball("english");
+       // testStemmer.setCurrent("abbreviation");
+        //testStemmer.stem();
+       // console.log(testStemmer.getCurrent());
    
     function report(a)
     {
@@ -260,6 +260,36 @@ table, th, td {
                 var res = [];
                 for(var i=0;i<ui.length;i++)
                 {
+                    if(ui[i]=="have" || ui[i]=="had")
+                        ui[i] = "have";
+                    else if(ui[i]=="is" || ui[i]=="was" || ui[i]=="were" || ui[i]=="be" || ui[i]=="being" || ui[i]=="would" || ui[i]=="are")
+                        ui[i]="is";
+                    else if(ui[i]=="grew" || ui[i]=="grown")
+                        ui[i] = "grow";
+                    else if(ui[i]=="it" || ui[i]=="its")
+                        ui[i] = "it";
+                    else if(ui[i]=="look" || ui[i]=="looked")
+                        ui[i] = "look";
+                    else if(ui[i]=="he" || ui[i]=="his" || ui[i]=="himself"|| ui[i]=="him")
+                        ui[i] = "he";
+                    else if(ui[i]=="wags" || ui[i]=="wagged")
+                        ui[i] = "wag";
+                    else if(ui[i]=="jumps" || ui[i]=="jump")
+                        ui[i] = "jump";
+                    else if(ui[i]=="ran" || ui[i]=="running")
+                        ui[i] = "run";
+                    else if(ui[i]=="get" || ui[i]=="going")
+                        ui[i] = "go";
+                    else if(ui[i]=="hear" || ui[i]=="heard")
+                        ui[i] = "hear";
+                    else if(ui[i]=="play" || ui[i]=="played")
+                        ui[i] = "play";
+                    else if(ui[i]=="jumps" || ui[i]=="jump")
+                        ui[i] = "jump";
+                    else if(ui[i]=="does" || ui[i]=="did")
+                        ui[i] = "do";
+                    else if(ui[i]=="no" || ui[i]=="not")
+                        ui[i] = "no";
                     var testStemmer = new Snowball("english");
                     testStemmer.setCurrent(ui[i]);
                     testStemmer.stem();
