@@ -1,0 +1,10 @@
+var e1="The child liked the chocolate.";
+var e2="She was stopped by the bravest knight.";
+var e3="Mary baked a cake for his birthday.";
+var e4="She decorated the cake carefully.";
+var e5="Mary wore a dress with polka dots.";
+var h1="राम ने सीता के लिए फल तोड़ा।";
+var h2="छोटे बच्चे पाठशाला जल्दी आयेंगे।";
+var h3="मेहनत का फल मीठा होता है।";
+var h4="वाह! वह खूबसूरत है।";
+var h5="पेड़ से पत्ते गिर गए।";
