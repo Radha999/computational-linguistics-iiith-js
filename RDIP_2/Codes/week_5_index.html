@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title> Computational Linguistics lab </title>
+</head>
+<style>
+    ::selection {
+        color : white;
+        background : #e75480 ;
+}
+    div.a{
+        text-align: center;
+        font-family:Lucida Grande,Lucida Sans Unicode, Lucida Sans, Verdana,Arial,sans-serif;
+    }
+    div.heading{
+    color: #222222;
+    font-family: "proxima-nova-extra-condensed-1", "proxima-nova-extra-condensed-2", "Trebuchet MS","Lucida Grande", "Lucida Sans Unicode","Lucida Sans",Verdana, Arial,sans-serif;
+    font-size: 30px;
+    font-weight: 300;
+    margin-left: 40px;
+    padding: 5px 0 30px;
+}
+</style>
+<body>
+   
+    <div class="heading">
+        Experiment
+    </div>
+     <div class="a">
+        <select name="language" id="language" style="text-align: center;" onchange="report(this.value)">
+        <option>---Select language---</option>
+        <option>English</option>
+        <option>Hindi</option>
+    </select>
+    </div><br><br><br>
+    <div class="a" id=english style="display: none; ">
+        <select onchange="some_func(this.value)">
+        <option>---Select sentence---</option>
+        <option>The child liked the chocolate.</option>
+        <option>She was stopped by the bravest knight.</option>
+        <option>Mary baked a cake for his birthday.</option>
+        <option>She decorated the cake carefully.</option>
+        <option>Mary wore a dress with polka dots.</option>
+        </select>
+    </div>
+        <div class="a" id="hindi" style="display: none;">
+        <select onchange="some_func(this.value)">
+        <option>---Select sentence---</option>
+        <option>राम ने सीता के लिए फल तोड़ा।</option>
+        <option>छोटे बच्चे पाठशाला जल्दी आयेंगे।</option>
+        <option>मेहनत का फल मीठा होता है।</option>
+        <option>वाह! वह खूबसूरत है।</option>
+        <option>पेड़ से पत्ते गिर गए।</option>
+        </select>
+    </div>
+    
+    <script src="corpus_2.js"></script>
+    <script>
+        function report(a)
+         {
+            if(a==="---Select language---")
+            alert("Select language");
+            else if(a==="English")
+            {
+                document.getElementById("english").style.display="block";
+                document.getElementById("hindi").style.display="none";
+            }
+            else if(a==="Hindi")
+            {
+                document.getElementById("hindi").style.display="block";
+                document.getElementById("english").style.display="none";
+            }
+        }
+    </script>
