@@ -71,6 +71,7 @@ th{
     </div><br>
     <div id="m-text" style="color:#0000FF;font: size 18px;text-align: center; font-family:Lucida Grande,Lucida Sans Unicode, Lucida Sans, Verdana,Arial,sans-serif; display:none"><i>Select the POS tag for corresponding words</i> </div><br>
     <div id="tab"></div>
+    <div id="ddm" style="display: none;"></div>
 
 
 
@@ -123,16 +124,20 @@ th{
         function createDropdown ()
         {
             var values = ["noun", "pronoun", "verb", "adjective", "adverb", "determiner", "preposition", "conjunction", "interjection"];
+            if(arr==h1 || arr==h2 || arr==h3 || arr==h4 || arr==h5)
+            values = ["noun", "pronoun", "verb", "adjective", "adverb", "determiner", "postposition", "conjunction", "interjection"];
             var select = document.createElement("select");
-            select.id = "pos"
+            select.id = "pos";
 
             for (const val of values) 
             {
                 var option = document.createElement("option");
                 option.value = val;
+                console.log(val);
                 option.text = val.charAt(0).toUpperCase() + val.slice(1);
                 select.appendChild(option);
             }
+            return select;
         }
 
         function drawTable()
@@ -171,6 +176,8 @@ th{
                 cell1 = document.createElement("td");
                 cell1.appendChild(document.createTextNode(temp[i]));
                 cell2 = document.createElement("td");
+                ter = createDropdown();
+                cell2.appendChild(ter);
                 cell3 = document.createElement("td");
                 cell4 = document.createElement("td");
                 row.appendChild(cell1);
