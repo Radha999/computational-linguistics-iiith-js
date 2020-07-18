@@ -22,6 +22,20 @@
     margin-left: 40px;
     padding: 5px 0 30px;
 }
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  margin-left:auto; 
+  margin-right:auto;
+  padding: 10px;
+}
+th{
+    text-align: center;
+    color: #961b25;
+    font-size: 18px;
+    font-weight: normal;
+}
 </style>
 <body>
    
@@ -54,10 +68,16 @@
         <option>वाह! वह खूबसूरत है।</option>
         <option>पेड़ से पत्ते गिर गए।</option>
         </select>
-    </div>
+    </div><br>
+    <div id="m-text" style="color:#0000FF;font: size 18px;text-align: center; font-family:Lucida Grande,Lucida Sans Unicode, Lucida Sans, Verdana,Arial,sans-serif; display:none"><i>Select the POS tag for corresponding words</i> </div><br>
+    <div id="tab"></div>
+
+
+
     
     <script src="corpus_2.js"></script>
     <script>
+        var arr;
         function report(a)
          {
             if(a==="---Select language---")
@@ -66,11 +86,100 @@
             {
                 document.getElementById("english").style.display="block";
                 document.getElementById("hindi").style.display="none";
+                document.getElementById("m-text").style.display="none";
             }
             else if(a==="Hindi")
             {
                 document.getElementById("hindi").style.display="block";
                 document.getElementById("english").style.display="none";
+                document.getElementById("m-text").style.display="none";
             }
+        }
+
+        function some_func(a) {
+            if(a===e1)
+                arr=e1;
+            else if(a===e2)
+                arr=e2;
+            else if(a===e3)
+                arr=e3;
+            else if(a===e4)
+                arr=e4;
+            else if(a===e5)
+                arr=e5;
+            else if(a===h1)
+                arr=h1;
+            else if(a===h2)
+                arr=h2;
+            else if(a===h3)
+                arr=h3;
+            else if(a===h4)
+                arr=h4;
+            else if(a===h5)
+                arr=h5;
+            drawTable();
+        }
+
+        function createDropdown ()
+        {
+            var values = ["noun", "pronoun", "verb", "adjective", "adverb", "determiner", "preposition", "conjunction", "interjection"];
+            var select = document.createElement("select");
+            select.id = "pos"
+
+            for (const val of values) 
+            {
+                var option = document.createElement("option");
+                option.value = val;
+                option.text = val.charAt(0).toUpperCase() + val.slice(1);
+                select.appendChild(option);
+            }
+        }
+
+        function drawTable()
+        {
+            document.getElementById("m-text").style.display="block";
+            if(document.getElementById("tab1"))
+            {
+                console.log("Yes");
+                document.getElementById("tab1").remove();
+            }
+
+            var el = document.getElementById("tab");
+            var tbl = document.createElement("table");
+
+            var temp = arr.split(" ");
+            var len = temp.length;
+
+            var f_row = document.createElement("tr");
+            var header1=document.createElement("th");
+            var header2=document.createElement("th");
+            var header3=document.createElement("th");
+            var header4=document.createElement("th");
+            header1.appendChild(document.createTextNode("LEXICON"));
+            header2.appendChild(document.createTextNode("POS"));
+            header3.appendChild(document.createTextNode(""));
+            header4.appendChild(document.createTextNode(""));
+            f_row.appendChild(header1);
+            f_row.appendChild(header2);
+            f_row.appendChild(header3);
+            f_row.appendChild(header4);
+            tbl.appendChild(f_row);
+
+            for(i=0;i<len;i++)
+            {
+                var row = document.createElement("tr");
+                cell1 = document.createElement("td");
+                cell1.appendChild(document.createTextNode(temp[i]));
+                cell2 = document.createElement("td");
+                cell3 = document.createElement("td");
+                cell4 = document.createElement("td");
+                row.appendChild(cell1);
+                row.appendChild(cell2);
+                row.appendChild(cell3);
+                row.appendChild(cell4);
+                tbl.appendChild(row);
+            }
+            tbl.setAttribute("id","tab1");
+            el.appendChild(tbl);
         }
     </script>
