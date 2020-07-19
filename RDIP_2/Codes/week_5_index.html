@@ -51,7 +51,7 @@ th{
     </div><br><br><br>
     <div class="a" id=english style="display: none; ">
         <select onchange="some_func(this.value)">
-        <option>---Select sentence---</option>
+        <option selected>---Select sentence---</option>
         <option>The child liked the chocolate.</option>
         <option>She was stopped by the bravest knight.</option>
         <option>Mary baked a cake for his birthday.</option>
@@ -61,7 +61,7 @@ th{
     </div>
         <div class="a" id="hindi" style="display: none;">
         <select onchange="some_func(this.value)">
-        <option>---Select sentence---</option>
+        <option selected>---Select sentence---</option>
         <option>राम ने सीता के लिए फल तोड़ा।</option>
         <option>छोटे बच्चे पाठशाला जल्दी आयेंगे।</option>
         <option>मेहनत का फल मीठा होता है।</option>
@@ -70,8 +70,8 @@ th{
         </select>
     </div><br>
     <div id="m-text" style="color:#0000FF;font: size 18px;text-align: center; font-family:Lucida Grande,Lucida Sans Unicode, Lucida Sans, Verdana,Arial,sans-serif; display:none"><i>Select the POS tag for corresponding words</i> </div><br>
-    <div id="tab"></div>
-    <div id="ddm" style="display: none;"></div>
+    <div id="tab"></div><br><br>
+    <button id="subm" style="display: none; margin:auto">Submit</button><br>
 
 
 
@@ -85,20 +85,29 @@ th{
             alert("Select language");
             else if(a==="English")
             {
-                document.getElementById("english").style.display="block";
+                document.getElementById('english').selectedIndex = -1;
+                document.getElementById("subm").style.display="none";
                 document.getElementById("hindi").style.display="none";
+                document.getElementById("english").style.display="block";
                 document.getElementById("m-text").style.display="none";
+                document.getElementById("tab").style.display="none";
             }
             else if(a==="Hindi")
             {
-                document.getElementById("hindi").style.display="block";
+                document.getElementById('hindi').selectedIndex = -1;
+                document.getElementById("subm").style.display="none";
                 document.getElementById("english").style.display="none";
+                document.getElementById("hindi").style.display="block";
                 document.getElementById("m-text").style.display="none";
+                document.getElementById("tab").style.display="none";
             }
+            
         }
 
         function some_func(a) {
-            if(a===e1)
+            if(a==="---Select sentence---")
+                alert("Select a sentence");
+            else if(a===e1)
                 arr=e1;
             else if(a===e2)
                 arr=e2;
@@ -118,6 +127,7 @@ th{
                 arr=h4;
             else if(a===h5)
                 arr=h5;
+            document.getElementById("tab").style.display="block";
             drawTable();
         }
 
@@ -188,5 +198,6 @@ th{
             }
             tbl.setAttribute("id","tab1");
             el.appendChild(tbl);
+            document.getElementById("subm").style.display="block";
         }
     </script>
