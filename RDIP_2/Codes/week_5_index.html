@@ -74,11 +74,13 @@ th{
     <button id="subm" style="display: none; margin:auto">Submit</button><br>
 
 
-
+    <script>var exports = {};</script>
     
     <script src="corpus_2.js"></script>
+    <script src="use.js"></script>
     <script>
         var arr;
+        console.log(check('This is a sentence'));
         function report(a)
          {
             if(a==="---Select language---")
@@ -141,11 +143,13 @@ th{
 
             for (const val of values) 
             {
+                var i=1;
                 var option = document.createElement("option");
                 option.value = val;
-                console.log(val);
                 option.text = val.charAt(0).toUpperCase() + val.slice(1);
+                option.setAttribute("id",i);
                 select.appendChild(option);
+                i++;
             }
             return select;
         }
@@ -200,4 +204,50 @@ th{
             el.appendChild(tbl);
             document.getElementById("subm").style.display="block";
         }
+
+        document.addEventListener('click', function(s){
+            if(s.target.id==="subm")
+            {
+                var rtag;
+                if(arr==e1 || arr==e2 || arr==e3 || arr==e4 || arr==e5)
+                {
+                var res=check(arr);
+                var ans=[];
+                for(var i=0;i<res.length;i++)
+                {
+                    if(res[i]=="DT" || res[i]=="PDT" || res[i]=="WDT"){
+                        rtag="Determiner";
+                        ans.push(rtag);}
+                    else if(res[i]=="CC"){
+                        rtag="Conjunction";
+                        ans.push(rtag);}
+                    else if(res[i]=="IN"){
+                        rtag="Preposition";
+                        ans.push(rtag);}
+                    else if(res[i]=="JJ" || res[i]=="JJR" || res[i]=="JJS"){
+                        rtag="Adjective";
+                        ans.push(rtag);}
+                    else if(res[i]=="NN" || res[i]=="NNP" || res[i]=="NNS" || res[i]=="NNPS"){
+                        rtag="Noun";
+                        ans.push(rtag);}
+                    else if(res[i]=="PRP$" || res[i]=="PRP"){
+                        rtag="Pronoun";
+                        ans.push(rtag);}
+                    else if(res[i]=="RB" || res[i]=="RBR" || res[i]=="RBS" || res[i]=="WRB"){
+                        rtag="Adverb";
+                        ans.push(rtag);}
+                    else if(res[i]=="VB" || res[i]=="VBD" || res[i]=="VBG" || res[i]=="VBN" || res[i]=="VBP" || res[i]=="VBZ"){
+                        rtag="Verb";
+                        ans.push(rtag);}
+                    else if(res[i]=="UH"){
+                        rtag="Interjection";
+                        ans.push(rtag);}
+                }
+                }
+            }
+        });
+
+        var btn = document.getElementById('subm');
+        btn.addEventListener('clcik',check);
+        
     </script>
