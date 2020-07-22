@@ -17,3 +17,5 @@ function check(p)
 }
 
 window.check = check;
+
+// As the npm modules don't work in the browser directly, I used 'browserify' to change this file (main.js) to use.js, which can be used in the browser without any issues.
