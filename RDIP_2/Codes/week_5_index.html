@@ -75,6 +75,7 @@ img1,img2{
     <div id="m-text" style="color:#0000FF;font: size 18px;text-align: center; font-family:Lucida Grande,Lucida Sans Unicode, Lucida Sans, Verdana,Arial,sans-serif; display:none"><i>Select the POS tag for corresponding words</i> </div><br>
     <div id="tab"></div><br><br>
     <button id="subm" style="display: none; margin:auto">Submit</button><br>
+    <button id="ga" style="display: none; margin:auto">Get answers</button><br>
 
 
     <script>var exports = {};</script>
@@ -82,7 +83,7 @@ img1,img2{
     <script src="corpus_2.js"></script>
     <script src="use.js"></script>
     <script>
-        var arr;
+        var arr; var nc=0; var arr1;
         var ha1=["Noun","Postposition","Noun","Postposition","Postposition","Noun","Verb"];
         var ha2=["Adjective","Noun","Noun","Adverb","Verb"];
         var ha3=["Noun","Postposition","Noun","Adjective","Verb","Verb"];
@@ -101,6 +102,7 @@ img1,img2{
                 document.getElementById("english").style.display="block";
                 document.getElementById("m-text").style.display="none";
                 document.getElementById("tab").style.display="none";
+                document.getElementById("ga").style.display="none";
             }
             else if(a==="Hindi")
             {
@@ -110,6 +112,7 @@ img1,img2{
                 document.getElementById("hindi").style.display="block";
                 document.getElementById("m-text").style.display="none";
                 document.getElementById("tab").style.display="none";
+                document.getElementById("ga").style.display="none";
             }
             
         }
@@ -213,6 +216,8 @@ img1,img2{
         }
 
         document.addEventListener('click', function(s){
+            console.log(arr);
+            nc=0; arr1=arr.split(" ");
             var img1 = document.createElement('img');
             img1.src = "right.png";
             console.log(img1);
@@ -264,7 +269,8 @@ img1,img2{
                     if(document.getElementById(k).value==ans[k])
                     {
                          document.getElementById("c"+k).appendChild(img1.cloneNode(true));
-                         console.log("Came here")
+                         console.log("Came here");
+                         nc++;
                     }
                      else
                      {
@@ -273,12 +279,15 @@ img1,img2{
                 }
                 
                 }
+                console.log(arr1.length);
                 if(arr==h1)
                 {
                     for(j=0;j<arr.length;j++)
                     {
-                        if(ha1[j]==document.getElementById(j).value)
+                        if(ha1[j]==document.getElementById(j).value){
                             document.getElementById("c"+j).appendChild(img1.cloneNode(true));
+                            nc++;
+                        }
                         else
                         document.getElementById("c"+j).appendChild(img2.cloneNode(true));
                     }
@@ -287,8 +296,9 @@ img1,img2{
                 {
                     for(j=0;j<arr.length;j++)
                     {
-                        if(ha2[j]==document.getElementById(j).value)
+                        if(ha2[j]==document.getElementById(j).value){
                             document.getElementById("c"+j).appendChild(img1.cloneNode(true));
+                            nc++;}
                         else
                         document.getElementById("c"+j).appendChild(img2.cloneNode(true));
                     }
@@ -297,36 +307,43 @@ img1,img2{
                 {
                     for(j=0;j<arr.length;j++)
                     {
-                        if(ha3[j]==document.getElementById(j).value)
+                        if(ha3[j]==document.getElementById(j).value){
                             document.getElementById("c"+j).appendChild(img1.cloneNode(true));
+                            nc++;}
                         else
                         document.getElementById("c"+j).appendChild(img2.cloneNode(true));
                     }
                 }
                 else if(arr==h4)
                 {
-                    for(j=0;j<arr.length;j++)
+                    for(j=0;j<arr1.length;j++)
                     {
-                        if(ha4[j]==document.getElementById(j).value)
+                        if(ha4[j]==document.getElementById(j).value){
                             document.getElementById("c"+j).appendChild(img1.cloneNode(true));
+                            nc++;}
                         else
                         document.getElementById("c"+j).appendChild(img2.cloneNode(true));
                     }
                 }
                 else if(arr==h5)
                 {
-                    for(j=0;j<arr.length;j++)
+                    for(j=0;j<arr1.length;j++)
                     {
-                        if(ha5[j]==document.getElementById(j).value)
+                        if(ha5[j]==document.getElementById(j).value){
                             document.getElementById("c"+j).appendChild(img1.cloneNode(true));
+                            nc++;}
                         else
                         document.getElementById("c"+j).appendChild(img2.cloneNode(true));
                     }
                 }
+                if(arr1.length!=nc)
+                    document.getElementById("ga").style.display="block";
+                if(arr.length==nc)
+                    document.getElementById("ga").style.display="none";
+
             }
         });
 
-        var btn = document.getElementById('subm');
-        btn.addEventListener('clcik',check);
+    
         
     </script>
