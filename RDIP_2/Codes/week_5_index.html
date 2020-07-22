@@ -53,7 +53,7 @@ img1,img2{
     </select>
     </div><br><br><br>
     <div class="a" id=english style="display: none; ">
-        <select onchange="some_func(this.value)">
+        <select onchange="some_func(this.value)" id="eng1">
         <option selected>---Select sentence---</option>
         <option>The child liked the chocolate.</option>
         <option>She was stopped by the bravest knight.</option>
@@ -63,7 +63,7 @@ img1,img2{
         </select>
     </div>
         <div class="a" id="hindi" style="display: none;">
-        <select onchange="some_func(this.value)">
+        <select onchange="some_func(this.value)" >
         <option selected>---Select sentence---</option>
         <option>राम ने सीता के लिए फल तोड़ा।</option>
         <option>छोटे बच्चे पाठशाला जल्दी आयेंगे।</option>
@@ -87,8 +87,8 @@ img1,img2{
         var ha1=["Noun","Postposition","Noun","Postposition","Postposition","Noun","Verb"];
         var ha2=["Adjective","Noun","Noun","Adverb","Verb"];
         var ha3=["Noun","Postposition","Noun","Adjective","Verb","Verb"];
-        var h4=["Interjection","Pronoun","Adjective","Verb"];
-        var h5=["Noun","Postposition","Noun","Verb","Verb"];
+        var ha4=["Interjection","Pronoun","Adjective","Verb"];
+        var ha5=["Noun","Postposition","Noun","Verb","Verb"];
         //console.log(check('This is a sentence'));
         function report(a)
          {
@@ -96,7 +96,7 @@ img1,img2{
             alert("Select language");
             else if(a==="English")
             {
-                document.getElementById('english').selectedIndex = -1;
+                document.getElementById("eng1").options.selectedIndex = 0;
                 document.getElementById("subm").style.display="none";
                 document.getElementById("hindi").style.display="none";
                 document.getElementById("english").style.display="block";
@@ -106,7 +106,7 @@ img1,img2{
             }
             else if(a==="Hindi")
             {
-                document.getElementById('hindi').selectedIndex = -1;
+                document.getElementById('hindi').selectedIndex = 0;
                 document.getElementById("subm").style.display="none";
                 document.getElementById("english").style.display="none";
                 document.getElementById("hindi").style.display="block";
@@ -118,6 +118,9 @@ img1,img2{
         }
 
         function some_func(a) {
+            console.log(a);
+            console.log(h4);
+            console.log("Done");
             if(a==="---Select sentence---")
                 alert("Select a sentence");
             else if(a===e1)
@@ -137,9 +140,13 @@ img1,img2{
             else if(a===h3)
                 arr=h3;
             else if(a===h4)
+            {
                 arr=h4;
+                console.log("Matched");
+            }
             else if(a===h5)
                 arr=h5;
+            console.log(arr+" reached ");
             document.getElementById("tab").style.display="block";
             document.getElementById("ga").innerHTML = "Get answers";
             document.getElementById("ga").style.display="none";
@@ -241,8 +248,9 @@ img1,img2{
                 }
                 if(arr==e1 || arr==e2 || arr==e3 || arr==e4 || arr==e5)
                 {
+                    console.log(arr);
                 var res=check(arr);
-               // var ans=[];
+                ans=[];
                 for(var i=0;i<res.length;i++)
                 {
                     if(res[i]=="DT" || res[i]=="PDT" || res[i]=="WDT"){
