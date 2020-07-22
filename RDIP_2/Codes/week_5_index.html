@@ -36,6 +36,9 @@ th{
     font-size: 18px;
     font-weight: normal;
 }
+img1,img2{
+    padding: 0px,0px,10px,40px;
+}
 </style>
 <body>
    
@@ -80,6 +83,11 @@ th{
     <script src="use.js"></script>
     <script>
         var arr;
+        var ha1=["Noun","Postposition","Noun","Postposition","Postposition","Noun","Verb"];
+        var ha2=["Adjective","Noun","Noun","Adverb","Verb"];
+        var ha3=["Noun","Postposition","Noun","Adjective","Verb","Verb"];
+        var h4=["Interjection","Pronoun","Adjective","Verb"];
+        var h5=["Noun","Postposition","Noun","Verb","Verb"];
         console.log(check('This is a sentence'));
         function report(a)
          {
@@ -133,23 +141,20 @@ th{
             drawTable();
         }
 
-        function createDropdown ()
+        function createDropdown (i)
         {
-            var values = ["noun", "pronoun", "verb", "adjective", "adverb", "determiner", "preposition", "conjunction", "interjection"];
+            var values = ["Noun", "Pronoun", "Verb", "Adjective", "Adverb", "Determiner", "Preposition", "Conjunction", "Interjection"];
             if(arr==h1 || arr==h2 || arr==h3 || arr==h4 || arr==h5)
-            values = ["noun", "pronoun", "verb", "adjective", "adverb", "determiner", "postposition", "conjunction", "interjection"];
+            values = ["Noun", "Pronoun", "Verb", "Adjective", "Adverb", "Determiner", "Postposition", "Conjunction", "Interjection"];
             var select = document.createElement("select");
-            select.id = "pos";
+            select.id = i;
 
             for (const val of values) 
             {
-                var i=1;
                 var option = document.createElement("option");
                 option.value = val;
                 option.text = val.charAt(0).toUpperCase() + val.slice(1);
-                option.setAttribute("id",i);
                 select.appendChild(option);
-                i++;
             }
             return select;
         }
@@ -190,10 +195,12 @@ th{
                 cell1 = document.createElement("td");
                 cell1.appendChild(document.createTextNode(temp[i]));
                 cell2 = document.createElement("td");
-                ter = createDropdown();
+                ter = createDropdown(i);
                 cell2.appendChild(ter);
                 cell3 = document.createElement("td");
+                cell3.id="c"+i;
                 cell4 = document.createElement("td");
+                cell4.id="p"+i;
                 row.appendChild(cell1);
                 row.appendChild(cell2);
                 row.appendChild(cell3);
@@ -206,6 +213,11 @@ th{
         }
 
         document.addEventListener('click', function(s){
+            var img1 = document.createElement('img');
+            img1.src = "right.png";
+            console.log(img1);
+            var img2 = document.createElement('img');
+            img2.src = "wrong.png";
             if(s.target.id==="subm")
             {
                 var rtag;
@@ -224,7 +236,7 @@ th{
                     else if(res[i]=="IN"){
                         rtag="Preposition";
                         ans.push(rtag);}
-                    else if(res[i]=="JJ" || res[i]=="JJR" || res[i]=="JJS"){
+                    else if(res[i]=="JJR" || res[i]=="JJS"){
                         rtag="Adjective";
                         ans.push(rtag);}
                     else if(res[i]=="NN" || res[i]=="NNP" || res[i]=="NNS" || res[i]=="NNPS"){
@@ -236,13 +248,80 @@ th{
                     else if(res[i]=="RB" || res[i]=="RBR" || res[i]=="RBS" || res[i]=="WRB"){
                         rtag="Adverb";
                         ans.push(rtag);}
-                    else if(res[i]=="VB" || res[i]=="VBD" || res[i]=="VBG" || res[i]=="VBN" || res[i]=="VBP" || res[i]=="VBZ"){
+                    else if(res[i]=="VB" || res[i]=="VBD" || res[i]=="VBG" || res[i]=="VBN" || res[i]=="VBP" || res[i]=="VBZ" || res[i]=="JJ"){
                         rtag="Verb";
                         ans.push(rtag);}
                     else if(res[i]=="UH"){
                         rtag="Interjection";
                         ans.push(rtag);}
                 }
+                console.log(ans);
+                for(var k=0;k<res.length - 1;k++)
+                {
+                    console.log(k);
+                    console.log(document.getElementById(k).value);
+                    console.log(ans[k]);
+                    if(document.getElementById(k).value==ans[k])
+                    {
+                         document.getElementById("c"+k).appendChild(img1.cloneNode(true));
+                         console.log("Came here")
+                    }
+                     else
+                     {
+                        document.getElementById("c"+k).appendChild(img2.cloneNode(true));
+                        console.log("Came here1");}
+                }
+                
+                }
+                if(arr==h1)
+                {
+                    for(j=0;j<arr.length;j++)
+                    {
+                        if(ha1[j]==document.getElementById(j).value)
+                            document.getElementById("c"+j).appendChild(img1.cloneNode(true));
+                        else
+                        document.getElementById("c"+j).appendChild(img2.cloneNode(true));
+                    }
+                }
+                else if(arr==h2)
+                {
+                    for(j=0;j<arr.length;j++)
+                    {
+                        if(ha2[j]==document.getElementById(j).value)
+                            document.getElementById("c"+j).appendChild(img1.cloneNode(true));
+                        else
+                        document.getElementById("c"+j).appendChild(img2.cloneNode(true));
+                    }
+                }
+                else if(arr==h3)
+                {
+                    for(j=0;j<arr.length;j++)
+                    {
+                        if(ha3[j]==document.getElementById(j).value)
+                            document.getElementById("c"+j).appendChild(img1.cloneNode(true));
+                        else
+                        document.getElementById("c"+j).appendChild(img2.cloneNode(true));
+                    }
+                }
+                else if(arr==h4)
+                {
+                    for(j=0;j<arr.length;j++)
+                    {
+                        if(ha4[j]==document.getElementById(j).value)
+                            document.getElementById("c"+j).appendChild(img1.cloneNode(true));
+                        else
+                        document.getElementById("c"+j).appendChild(img2.cloneNode(true));
+                    }
+                }
+                else if(arr==h5)
+                {
+                    for(j=0;j<arr.length;j++)
+                    {
+                        if(ha5[j]==document.getElementById(j).value)
+                            document.getElementById("c"+j).appendChild(img1.cloneNode(true));
+                        else
+                        document.getElementById("c"+j).appendChild(img2.cloneNode(true));
+                    }
                 }
             }
         });
